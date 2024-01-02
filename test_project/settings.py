@@ -76,7 +76,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Mujtaba405$Test_Proj',
         'USER': 'Mujtaba405',
-        'PASSWORD': 'mujtaba@405',
+        'PASSWORD': 'YES',
         'HOST': 'Mujtaba405.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
