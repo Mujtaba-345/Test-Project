@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %} Welcome to Your Website {% endblock title %}
+{% block body %}
+      <h1>Welcome to Your Website</h1>
+    <p>Thank you for signing up! We hope you enjoy using our platform.</p>
+      <a href="{{ accept_link }}"><button class="btn btn-danger">Verify Email</button></a>
+
+      <p>In case button is not working please click on below button to verify your email</p>
+      <a href="{{ accept_link }}">{{ accept_link }}</a>
+
+ {% endblock body %}

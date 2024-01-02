@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "test-project"
+version = "0.1.0"
+description = ""
+authors = ["Mujtaba <mujtaba@tripledsystems.com>"]
+readme = "README.md"
+packages = [{include = "test_project"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pillow = "^10.1.0"
+django = "^5.0"
+djangorestframework = "3.14.0"
+djangorestframework-simplejwt = "^5.3.1"
+drf-yasg = "^1.21.7"
+django-rest-swagger = "^2.2.0"
+django-unused-media = "^0.2.2"
+pymupdf = "^1.23.8"
+reportlab = "^4.0.8"
+pytube3 = "^9.6.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
