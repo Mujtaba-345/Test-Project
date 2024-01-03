@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework import status, serializers
 from rest_framework.views import APIView
 from .serializers import UserSignupSerializer, UserProfileSerializer, ChangePasswordSerializer, \
-    ForgotPasswordSerializer, PasswordResetConfirmSerializer, ProductSerializer
+    ForgotPasswordSerializer, PasswordResetConfirmSerializer, ProductSerializer, UserSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import UserProfile, User, Product
 from rest_framework.permissions import IsAuthenticated

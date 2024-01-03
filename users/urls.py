@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import UserSignUpAPIView, UserProfileAPiView, ConfirmsEmailAPIView, ChangePasswordAPIView, \
-    PasswordResetAPIView, PasswordResetConfirmView, ResendEmailAPIView, ProductApIView, ProductDetailApIView, ProductPDFView,ProductCSVAPIView,LogoutView
-from rest_framework_simplejwt.views import TokenBlacklistView
+    PasswordResetAPIView, PasswordResetConfirmView, ResendEmailAPIView, ProductApIView, ProductDetailApIView, \
+    ProductPDFView, ProductCSVAPIView, LogoutView
 
 urlpatterns = [
     path("signup/", UserSignUpAPIView.as_view(), name="signup"),
