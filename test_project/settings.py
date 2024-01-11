@@ -201,3 +201,6 @@ SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': False,  # Disable Django REST framework's login with session authentication
     'JSON_EDITOR': True,  # Enable the JSON editor in Swagger UI
 }
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
