@@ -1,18 +1,20 @@
 import os.path
 from pathlib import Path
 from datetime import timedelta
-
+from dotenv import load_dotenv
+load_dotenv(override=True)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
+app_env = os.environ.get("APP_ENV")
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-odm^uk7eyq&%vbzeip=n43r-3dx-@(xwpojmu4sen^@suw(u8^'
-
+DEBUG = True
+if app_env=="prod":
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+    DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 # Application definition
@@ -164,7 +166,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-# STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
@@ -172,7 +174,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR / 'media'
-# MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'
 
 # Email configration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -195,17 +197,18 @@ SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': False,  # Disable Django REST framework's login with session authentication
     'JSON_EDITOR': True,  # Enable the JSON editor in Swagger UI
 }
-AWS_ACCESS_KEY_ID = "AKIAU6GD2GZVJH5H4WUF"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_STORAGE_BUCKET_NAME = "shehroz-bucket"
-AWS_DEFAULT_ACL = None
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-# s3 static settings
-STATIC_LOCATION = 'static'
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-STATICFILES_STORAGE = 'test_project.storage_backends.StaticStorage'
-# s3 public media settings
-PUBLIC_MEDIA_LOCATION = 'media'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-DEFAULT_FILE_STORAGE = 'test_project.storage_backends.PublicMediaStorage'
+if app_env=="prod":
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = "shehroz-bucket"
+    AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # s3 static settings
+    STATIC_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+    STATICFILES_STORAGE = 'test_project.storage_backends.StaticStorage'
+    # s3 public media settings
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'test_project.storage_backends.PublicMediaStorage'
