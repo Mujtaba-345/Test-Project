@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-odm^uk7eyq&%vbzeip=n43r-3dx-@(xwpojmu4sen^@suw(u8^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 # Application definition
@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'drf_yasg',
     'django_unused_media',
-    'rest_framework_simplejwt.token_blacklist'
+    'rest_framework_simplejwt.token_blacklist',
+    'storages'
 
 ]
 
@@ -64,22 +65,23 @@ WSGI_APPLICATION = 'test_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'Mujtaba405$Test_Proj',
-#         'USER': 'Mujtaba405',
-#         'PASSWORD': 'YES',
-#         'HOST': 'Mujtaba405.mysql.pythonanywhere-services.com',
-#         'PORT': '3306',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'test_db',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'database-1.c9ay4msgitb1.us-east-1.rds.amazonaws.com',
+        'PORT': 5432,
+    }
+}
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
@@ -162,7 +164,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
@@ -170,7 +172,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 
 # Email configration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -193,3 +195,17 @@ SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': False,  # Disable Django REST framework's login with session authentication
     'JSON_EDITOR': True,  # Enable the JSON editor in Swagger UI
 }
+AWS_ACCESS_KEY_ID = "AKIAU6GD2GZVJH5H4WUF"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "shehroz-bucket"
+AWS_DEFAULT_ACL = None
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+# s3 static settings
+STATIC_LOCATION = 'static'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+STATICFILES_STORAGE = 'test_project.storage_backends.StaticStorage'
+# s3 public media settings
+PUBLIC_MEDIA_LOCATION = 'media'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+DEFAULT_FILE_STORAGE = 'test_project.storage_backends.PublicMediaStorage'
