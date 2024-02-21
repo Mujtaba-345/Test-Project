@@ -1,8 +1,4 @@
-AccessControl==6.3
-Acquisition==5.1
-alembic==1.7.6.dev0
-amqp==5.0.9
-anyjson==0.3.3
+
 apturl==0.5.2
 asgiref==3.7.2
 astroid==2.9.3
