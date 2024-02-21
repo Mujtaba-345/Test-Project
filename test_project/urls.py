@@ -11,20 +11,20 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 
-TokenObtainPairView.post = swagger_auto_schema(
-    operation_id='User Login',
-    operation_description='User Login',
-    security=[],  # Set security to an empty list
-    request_body=openapi.Schema(
-        type=openapi.TYPE_OBJECT,
-        properties={
-            'username': openapi.Schema(type=openapi.TYPE_STRING, description='username', default="ali"),
-            'password': openapi.Schema(type=openapi.TYPE_STRING, description='password',
-                                       default="123"),
-        },
-        required=['username', 'password']
-    )
-)(TokenObtainPairView.post)
+# TokenObtainPairView.post = swagger_auto_schema(
+#     operation_id='User Login',
+#     operation_description='User Login',
+#     security=[],  # Set security to an empty list
+#     request_body=openapi.Schema(
+#         type=openapi.TYPE_OBJECT,
+#         properties={
+#             'username': openapi.Schema(type=openapi.TYPE_STRING, description='username', default="ali"),
+#             'password': openapi.Schema(type=openapi.TYPE_STRING, description='password',
+#                                        default="123"),
+#         },
+#         required=['username', 'password']
+#     )
+# )(TokenObtainPairView.post)
 
 schema_view = get_schema_view(
     openapi.Info(
