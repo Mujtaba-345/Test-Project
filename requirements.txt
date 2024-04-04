@@ -32,8 +32,8 @@ dbus-python==1.2.18
 distlib==0.3.4
 distro==1.7.0
 Django==2.2.4
-djangorestframework
-djangorestframework-simplejwt
+djangorestframework==3.15.1
+djangorestframework-simplejwt==5.3.1
 django-decouple==2.1
 django-unused-media==0.2.2
 docker==5.0.3
